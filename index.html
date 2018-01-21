@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Crypto W/L</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<header role="banner">
+		<div class="title">
+			<h1>Crypto Winners/Losers</h1>		
+		</div>
+		
+		<nav role="navigation">
+			<ul>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Leader/Loser Board</a></li>
+			</ul>
+			<form>
+			<fieldset>
+				<label for="search"></label>
+				<input id="search" type="text" name="search" placeholder="Search by name/symbole">
+				<button type="submit" name="search">Search</button>
+			</fieldset>
+		</form>
+		</nav>
+		
+	</header>
+	<main role="main">
+		<section class="mktcapwinner" role="region">
+			<h2>Market Cap Leader</h2>
+			<div></div>
+		</section>
+		<section class="topthreewinner" role="region">
+			<h2>Days Top 3 Winners</h2>
+			<div>
+				<ol class="topWin3results">
+					
+				</ol>
+			</div>
+		</section>
+		<section class="topthreeloser" role="region">
+			<h2>Days Top 3 Losers</h2>
+			<div>
+				<ol class="topLos3results">
+				</ol>
+			</div>
+		</section>
+
+		<div class="searchresult"></div>
+
+
+	</main>
+	<footer role="contactinfo"> © 2018 Sean Harte</footer>
+	<script type="text/javascript" src="javascript/frameworks/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="javascript/index.js"></script>
+
+</body>
+</html>

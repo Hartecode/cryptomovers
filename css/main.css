@@ -1,0 +1,127 @@
+body {
+	margin: 0;
+}
+
+header {
+	background-color: black;
+	color: white;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.title {
+	display: inline-block;
+    font-size: 14px;
+    margin: 0;
+}
+
+h1 {
+	margin: 0;
+}
+
+nav  {
+	float: right
+}
+
+nav ul {
+	list-style: none;
+	font-size: 20px;
+	display: inline-block;
+	margin: 0;
+}
+
+nav li {
+	display: inline;
+	margin-right: 20px;
+}
+
+header form {
+	display: inline-block;
+}
+
+fieldset {
+	border: 0;
+}
+
+a:link    {
+/* Applies to all unvisited links */
+text-decoration:  none;
+font-weight:      bold;
+} 
+
+a:visited {
+/* Applies to all visited links */
+text-decoration:  none;
+font-weight:      bold;;
+} 
+
+a:hover   {
+/* Applies to links under the pointer */
+text-decoration:  underline;
+font-weight:      bold;
+color:            #fff;
+} 
+
+a:active  {
+/* Applies to activated links */
+text-decoration:  underline;
+font-weight:      bold;
+color: white;
+} 
+
+main {
+	width: 960px;
+	margin-right: auto;
+	margin-left:  auto;
+	margin-top: 60px;
+}
+
+.topthreewinner ol, .topthreeloser ol{
+	font-size: 35px;
+}
+
+.top3sym {
+	height: 60px;
+}
+
+.topContent {
+	display: inline-block;
+}
+
+.pecentageArrow {
+	display: inline-block;
+	margin-left: 16px;
+}
+
+.fa-sort-asc {
+	color: green;
+}
+
+.fa-caret-down {
+	color: red;
+}
+
+.positiveIncrease {
+	display: inline-block;
+	color: green;
+}
+
+.negativeIncrease {
+	display: inline-block;
+	color: red;
+}
+
+footer {
+	position:absolute;
+	/*right: 0;
+	bottom: 0;
+	left: 0;*/
+   	width:100%;
+   	background-color: black;
+   	color: white;
+   	text-align: center;
+}
+
