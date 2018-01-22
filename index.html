@@ -16,8 +16,8 @@
 		
 		<nav role="navigation">
 			<ul>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Leader/Loser Board</a></li>
+				<li><a class="about" href="#">About</a></li>
+				<li><a class="LLBoard" href="#">Leader/Loser Board</a></li>
 			</ul>
 			<form>
 			<fieldset>
@@ -29,25 +29,41 @@
 		</nav>
 		
 	</header>
-	<main role="main">
-		<section class="mktcapwinner" role="region">
-			<h2>Market Cap Leader</h2>
-			<div></div>
-		</section>
+	<main class="container flex" role="main">
+		
 		<section class="topthreewinner" role="region">
-			<h2>Days Top 3 Winners</h2>
+			<h2 class="topheader">Days Top 3 Winners</h2>
 			<div>
 				<ol class="topWin3results">
 					
 				</ol>
 			</div>
 		</section>
+
 		<section class="topthreeloser" role="region">
-			<h2>Days Top 3 Losers</h2>
+			<h2 class="topheader">Days Top 3 Losers</h2>
 			<div>
 				<ol class="topLos3results">
 				</ol>
 			</div>
+		</section>
+		<section class="aboutContent" role="region">
+			<div class="container">
+				<h2 class="topheader"> About</h2>
+				<div class="aboutclose"><i class="fa fa-times" aria-hidden="true"></i></div>
+				<p>Bacon ipsum dolor amet chuck bresaola pastrami flank, ut ribeye buffalo swine. Dolore labore capicola tenderloin. Deserunt corned beef pariatur salami excepteur ham sunt, doner ball tip sed landjaeger pork belly est bacon. Id duis porchetta, jerky ball tip in kielbasa aliqua ipsum pariatur short loin nulla sausage ribeye anim.</p>
+
+				<p>Ex enim drumstick, frankfurter aliqua ham bacon flank ground round tail short ribs. Anim nisi in burgdoggen lorem nostrud cillum. Doner consequat culpa fugiat prosciutto. Proident pig consequat, fugiat porchetta officia exercitation ut picanha. Nisi et eu pork chop filet mignon ullamco chicken pariatur frankfurter dolore deserunt.</p>
+			</div>
+		</section>
+		<section class="leader-looser" role="region">
+			<div class="container llbox">
+				<h2 class="topheader">Leader/Loser Board</h2>
+				<div class="boardclose"><i class="fa fa-times" aria-hidden="true"></i></div>
+				<ol class="llboardresults">		
+				</ol>
+			</div>
+			
 		</section>
 
 		<div class="searchresult"></div>

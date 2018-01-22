@@ -39,7 +39,8 @@ function updateData(data) {
 	currerntCoinPriceData = data.DISPLAY;
 	fromObjectToArray(currerntCoinPriceData, requestedNumber, listOfCoins);
 	loadTopWinThreeCoin (highToLowPct, basicCoinInfo);
-	loadTopLosThreeCoin (highToLowPct, basicCoinInfo); 
+	loadTopLosThreeCoin (highToLowPct, basicCoinInfo);
+	loadLeaderLoserBoard(highToLowPct, basicCoinInfo); 
 	}
 
 //this funcition take the data from the JSON and puts it in an area which sorts it from heightest percent change to lowest
@@ -47,6 +48,7 @@ function fromObjectToArray(data, numberOfCoins, listOfCoins) {
 	console.log('fromObjectToArray: rendered')
 	for(let i = 0; i < numberOfCoins; i ++){
 		highToLowPct.push(data[listOfCoins[i]]);
+		highToLowPct[i].USD.KEY = listOfCoins[i];
 	}
 	//sort the objects from hights percentage change in a day
 	highToLowPct.sort(function(a,b){
@@ -66,7 +68,7 @@ function topWinnerHtml(priceData, coinInfo) {
 //this function loads the top 3 coins with % change
 function loadTopWinThreeCoin (arr, basicInfo) {
 	let htmlContent = arr.slice(0, 3).map(function(priceData) {
-		return topWinnerHtml(priceData, basicCoinInfo[priceData.USD.FROMSYMBOL]);
+		return topWinnerHtml(priceData, basicInfo[priceData.USD.KEY]);
 	});
 
 	$('.topWin3results').html(htmlContent);
@@ -87,14 +89,61 @@ function loadTopLosThreeCoin (arr, basicInfo) {
 	let htmlContent = []
 
 	arr.slice(-3).forEach(function(priceData) {
-		htmlContent.unshift(topLosserHtml(priceData, basicCoinInfo[priceData.USD.FROMSYMBOL]));
+		htmlContent.unshift(topLosserHtml(priceData, basicInfo[priceData.USD.KEY]));
 	});
 
 	$('.topLos3results').html(htmlContent);
 }
+
+//this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
+function boardHtml(priceData, coinInfo) {
+	console.log(coinInfo);
+	return `<li>
+				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
+				<div class="topContent"><p>${coinInfo.FullName} <span class="priceInc">${priceData.USD.PRICE}</span></p></div>
+				<div class="pecentageArrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></div><div class="positiveIncrease">${priceData.USD.CHANGEPCTDAY}%</div>
+			</li>`
+}
+
+//this function loads the top 3 coins with % change
+function loadLeaderLoserBoard(arr, basicInfo) {
+	let htmlContent = arr.map(function(priceData) {
+		console.log(priceData.USD.KEY);
+		console.log(arr.indexOf(priceData));
+		return boardHtml(priceData, basicInfo[priceData.USD.KEY]);
+	});
+
+	$('.llboardresults').html(htmlContent);
+}
+
+//this function displays and closes the leader/loser board modal
+function llboardButton() {
+	$('.LLBoard').on('click', function(){
+		$('.leader-looser').fadeIn();
+	});
+
+	$('.boardclose').on('click', function(){
+		$('.leader-looser').css('display', 'none');
+	});
+}
+
+//this function displays and closes the about modal
+function aboutButton() {
+	$('.about').on('click', function(){
+		$('.aboutContent').fadeIn();
+	});
+
+	$('.aboutclose').on('click', function(){
+		$('.aboutContent').css('display', 'none');
+	});
+}
+
+
 //this function runs the program
 function runApp() {
 	getBasicInfo(addDataToGeneralInfo);
+	llboardButton();
+	aboutButton();
 }
 
 

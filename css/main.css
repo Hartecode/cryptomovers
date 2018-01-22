@@ -4,12 +4,14 @@ body {
 
 header {
 	background-color: black;
+	height: 60px;
 	color: white;
 	position: fixed;
 	top: 0;
 	width: 100%;
 	box-sizing: border-box;
 	padding: 10px;
+	z-index: 1;
 }
 
 .title {
@@ -47,48 +49,73 @@ fieldset {
 }
 
 a:link    {
-/* Applies to all unvisited links */
-text-decoration:  none;
-font-weight:      bold;
+	text-decoration:  none;
+	font-weight:      bold;
 } 
 
 a:visited {
-/* Applies to all visited links */
-text-decoration:  none;
-font-weight:      bold;;
+	text-decoration:  none;
+	font-weight:      bold;;
 } 
 
 a:hover   {
-/* Applies to links under the pointer */
-text-decoration:  underline;
-font-weight:      bold;
-color:            #fff;
+	text-decoration:  underline;
+	font-weight:      bold;
+	color:            #fff;
 } 
 
 a:active  {
-/* Applies to activated links */
-text-decoration:  underline;
-font-weight:      bold;
-color: white;
+	text-decoration:  underline;
+	font-weight:      bold;
+	color: white;
 } 
 
-main {
-	width: 960px;
+.flex {
+	display: flex;
+    flex-wrap: wrap;
+}
+
+.container {
+	max-width: 900px;
 	margin-right: auto;
 	margin-left:  auto;
 	margin-top: 60px;
+	padding-top: 20px;
+}
+
+.topthreewinner, .topthreeloser {
+	background-color: #faf2ff;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 375px;
+    margin: auto;
+    margin-bottom: 15px;
+
+}
+
+.topheader {
+	text-align: center;
 }
 
 .topthreewinner ol, .topthreeloser ol{
-	font-size: 35px;
+	font-size: 20px;
+	padding-left: 15px;
+}
+
+.topWin3results li, .topLos3results li, .llboardresults li {
+	height: 50px;
+	box-sizing: border-box;
+	padding: 8px;
+	font-size: 20px;
 }
 
 .top3sym {
-	height: 60px;
+	height: 100%;
 }
 
 .topContent {
 	display: inline-block;
+	font-size: 16px
 }
 
 .pecentageArrow {
@@ -107,21 +134,50 @@ main {
 .positiveIncrease {
 	display: inline-block;
 	color: green;
+	font-size: 16px;
 }
 
 .negativeIncrease {
 	display: inline-block;
 	color: red;
+	font-size: 16px;
+}
+
+.leader-looser, .aboutContent {
+	display: none;
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.boardclose, .aboutclose {
+	float: right;
+    position: relative;
+    top: -40px;
+}
+
+.leader-looser .container, .aboutContent .container {
+	background-color: gray;
+	box-sizing: border-box;
+	padding: 20px;
 }
 
 footer {
-	position:absolute;
-	/*right: 0;
+	position: fixed;
 	bottom: 0;
-	left: 0;*/
    	width:100%;
    	background-color: black;
    	color: white;
    	text-align: center;
 }
 
+@-ms-viewport{
+  width: device-width;
+}
+
+@media screen and (min-width: 780px) {
+	main {
+		padding-top: 100px;
+	}
+}
