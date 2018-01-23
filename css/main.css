@@ -88,6 +88,7 @@ a:active  {
     box-sizing: border-box;
     padding: 10px;
     width: 375px;
+    min-height: 260px;
     margin: auto;
     margin-bottom: 15px;
 
@@ -161,6 +162,45 @@ a:active  {
 	background-color: gray;
 	box-sizing: border-box;
 	padding: 20px;
+}
+
+/*leader chart css*/
+.dayLeader {
+	background-color: #faf2ff;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 100%;
+  
+}
+
+.heading {
+  text-align: center;
+  width: 100%;
+}
+
+.imageIcon {
+  height: 40px;
+  margin: auto;
+}
+
+.imageIcon img{
+  height: 100%;
+}
+
+.coinName{
+  font-size: 20px;
+  margin: auto;
+}
+
+.coinPercentage {
+  margin: auto;
+  font-size: 20px;
+}
+
+.coinCost{
+  width: 100%;
+  text-align: center;
+  margin: auto;
 }
 
 footer {
