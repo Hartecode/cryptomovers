@@ -165,11 +165,12 @@ a:active  {
 }
 
 /*leader chart css*/
-.dayLeader {
+.dayLeader, .searchresult {
 	background-color: #faf2ff;
 	box-sizing: border-box;
 	padding: 10px;
 	width: 100%;
+	margin-bottom: 50px;
   
 }
 
@@ -204,7 +205,7 @@ a:active  {
 }
 
 footer {
-	position: fixed;
+	position: relative;
 	bottom: 0;
    	width:100%;
    	background-color: black;

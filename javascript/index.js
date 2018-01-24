@@ -15,7 +15,7 @@ const requestedNumber = 50;
 const cryptoComparePriceUrl = "https://min-api.cryptocompare.com/data/pricemultifull?";
 
 //url historical price url
-const histPriceUrl = "https://min-api.cryptocompare.com/data/histoday?";
+const histPriceDayUrl = "https://min-api.cryptocompare.com/data/histoday?";
 
 //this function will get data from the coinlist api
 function getBasicInfo(callback) {
@@ -27,12 +27,19 @@ function addDataToGeneralInfo(data) {
   basicCoinInfo = data.Data;
   listOfCoins = Object.keys(basicCoinInfo);
   getCurrnetPriceData(cryptoComparePriceUrl,listOfCoins, updateData, requestedNumber);
+  // the intervial will be set here
+  // setInterval( priceInterval, 10000);
 }
+
+function priceInterval() {
+	getCurrnetPriceData(cryptoComparePriceUrl,listOfCoins, updateData, requestedNumber)
+}
+
 
 //this fuunction will call the price data for all the coins 
 function getCurrnetPriceData(url, coinlist, callback, numberOfCoins) {
 	let query = url + 'fsyms='+ coinlist.slice(0,numberOfCoins).join(",") + '&tsyms=USD';
-	// console.log(query);
+	console.log(query);
 	$.getJSON(query, callback);
 }
 
@@ -40,11 +47,13 @@ function getCurrnetPriceData(url, coinlist, callback, numberOfCoins) {
 //this function puts price data in a variable where it can be used
 function updateData(data) {
 	currerntCoinPriceData = data.DISPLAY;
+
 	fromObjectToArray(currerntCoinPriceData, requestedNumber, listOfCoins);
+	console.log(basicCoinInfo);
 	loadTopWinThreeCoin (highToLowPct, basicCoinInfo);
 	loadTopLosThreeCoin (highToLowPct, basicCoinInfo);
 	loadLeaderLoserBoard(highToLowPct, basicCoinInfo);
-	topChart(histPriceUrl, 'dayLeaderChart' , highToLowPct); 
+	leaderShown();
 	}
 
 //this funcition take the data from the JSON and puts it in an area which sorts it from heightest percent change to lowest
@@ -62,6 +71,7 @@ function fromObjectToArray(data, numberOfCoins, listOfCoins) {
 
 //this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
 function topWinnerHtml(priceData, coinInfo) {
+	console.log("topWinnerHtml:" + JSON.stringify(coinInfo));
 	return `<li>
 				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
 				<div class="topContent"><p>${coinInfo.FullName} <span class="priceInc">${priceData.USD.PRICE}</span></p></div>
@@ -71,7 +81,9 @@ function topWinnerHtml(priceData, coinInfo) {
 
 //this function loads the top 3 coins with % change
 function loadTopWinThreeCoin (arr, basicInfo) {
+	console.log(basicInfo);
 	let htmlContent = arr.slice(0, 3).map(function(priceData) {
+		console.log(priceData);
 		return topWinnerHtml(priceData, basicInfo[priceData.USD.KEY]);
 	});
 
@@ -145,7 +157,7 @@ function aboutButton() {
 function usableChartData(json) {
 	let fullData = json.Data;
 	let histData = fullData.map(function(obj){
-						return [obj.time, obj.close];
+						return [obj.time * 1000, obj.close];
 					});
 	return histData;
 }
@@ -154,10 +166,9 @@ function usableChartData(json) {
 //this will call data for the lead coin and put it in the main page chart
 
 //this is a chart fucntion which takes a few argument
-function topChart(url, idHTML , arr){
-	let symb = arr[0].USD.KEY;
-	let query = {
-		fsym: symb,
+function finChart(url, idHTML , key){
+	const query = {
+		fsym: key,
 		tsym: 'USD',
 		allData: true,
 		aggregate: 1
@@ -166,7 +177,7 @@ function topChart(url, idHTML , arr){
 
 	$.getJSON(url, query,function(data){
 		
-		console.log(usableChartData(data));
+		// console.log(usableChartData(data));
 		Highcharts.stockChart(idHTML, {
 
 
@@ -175,11 +186,11 @@ function topChart(url, idHTML , arr){
 	        },
 
 	        title: {
-	            text: `${symb} Coin Price`
+	            text: `${key} Coin Price`
 	        },
 
 	        series: [{
-	            name: symb,
+	            name: key,
 	            data: usableChartData(data),
 	            tooltip: {
 	                valueDecimals: 2
@@ -188,14 +199,35 @@ function topChart(url, idHTML , arr){
 	    });
 	});
 
-	
 }
+
+//this function will load the the info for lead coin info
+function leaderShown() {
+	let winningCoin = highToLowPct[0].USD.KEY;
+	let imgIcon = `https://www.cryptocompare.com${basicCoinInfo[winningCoin].ImageUrl}`;
+	let name = basicCoinInfo[winningCoin].FullName;
+	let currPrice = highToLowPct[0].USD.PRICE;
+	let perChg =highToLowPct[0].USD.CHANGEPCTDAY;
+	$(".imageIcon img").attr('src', imgIcon);
+	$(".coinName").text(name);
+	$(".coinCost").text(currPrice);
+	$(".coinPercentage").text(perChg);
+	finChart(histPriceDayUrl, 'dayLeaderChart' , winningCoin); 
+}
+
+//this function takes a users input and retuns search result
+function cryptoSearch() {
+	finChart(histPriceDayUrl, "searchChart" , "BTC");
+}
+
+// function interval()
 
 //this function runs the program
 function runApp() {
 	getBasicInfo(addDataToGeneralInfo);
 	llboardButton();
 	aboutButton();
+	cryptoSearch();
 }
 
 
