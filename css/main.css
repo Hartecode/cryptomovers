@@ -11,7 +11,7 @@ header {
 	width: 100%;
 	box-sizing: border-box;
 	padding: 10px;
-	z-index: 1;
+	z-index: 2;
 }
 
 .title {
@@ -20,9 +20,10 @@ header {
     margin: 0;
 }
 
-h1 {
+h1, h2 {
 	margin: 0;
 }
+
 
 nav  {
 	float: right
@@ -150,6 +151,12 @@ a:active  {
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 1;
+}
+
+.leader-looser{
+	xsoverflow-y: scroll;
+    height: 100vh;
 }
 
 .boardclose, .aboutclose {
@@ -174,35 +181,81 @@ a:active  {
   
 }
 
-.heading {
-  text-align: center;
-  width: 100%;
-}
-
 .imageIcon {
-  height: 40px;
-  margin: auto;
+  height: 100px;
+  width: 25%;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 .imageIcon img{
+  display: block;
+  margin: auto;
   height: 100%;
 }
 
+.searchCoinInfo {
+  width: 50%;
+  height: 100px;
+}
 .coinName{
   font-size: 20px;
-  margin: auto;
+  display: inline-block;
+  width: 40%;
+  height: 50%;
 }
 
 .coinPercentage {
   margin: auto;
   font-size: 20px;
+  display: inline-block;
+  width: 25%;
+  text-align: right;
+  height: 50%;
 }
 
 .coinCost{
-  width: 100%;
   text-align: center;
   margin: auto;
+  display: inline-block;
+  width: 30%;
+  height: 50%;
+  font-size: 20px;
 }
+
+.priceData {
+  display: inline-block;
+  width: 32%;
+  height: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.priceData h4, .priceData p {
+  margin: 0;
+}
+.searchRanking {
+  width: 25%;
+  text-align: center;
+  height: 100PX;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.searchRanking h2 {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.searchRanking p {
+  font-size: 40px;
+  margin: 0;
+}
+#dayLeaderChart {
+  width: 100%;
+  margin: auto;
+}
+
 
 footer {
 	position: relative;
@@ -215,6 +268,20 @@ footer {
 
 @-ms-viewport{
   width: device-width;
+}
+
+@media screen and (max-width:720px){
+  .imageIcon {
+    order: 1;
+  }
+  .searchCoinInfo {
+    order: 3;
+    width: 100%;
+  }
+  .searchRanking {
+    order:2;
+    margin: auto;
+  }
 }
 
 @media screen and (min-width: 780px) {

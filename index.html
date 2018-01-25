@@ -19,7 +19,7 @@
 				<li><a class="about" href="#">About</a></li>
 				<li><a class="LLBoard" href="#">Leader/Loser Board</a></li>
 			</ul>
-			<form>
+			<form class="finder">
 			<fieldset>
 				<label for="search"></label>
 				<input id="search" type="text" name="search" placeholder="Search by name/symbole">
@@ -71,32 +71,58 @@
 			<div id="winnerChart"></div>
 		</section>
 
-		<section class="dayLeader">
-	      <div class="flex">
-	        <div class="heading">
-	          <h2>Day Leader</h2>
-	        </div>
-	        <div class="imageIcon"><img src="https://www.cryptocompare.com/media/350894/bios.png" name="BiosCrypto"></div>
-	        <div class="coinName">BiosCrypto (BIOS)</div>
-	        <div class="coinPercentage positiveInc">20.54</div>
-	        <div class="coinCost">$1,058</div>
-	      </div>
-	      <div id="dayLeaderChart"></div>
+		<section class="dayLeader" role="region">
+	    	<div class="flex">
+		        <div class="imageIcon "><img class="leadIcon" src="https://www.cryptocompare.com/media/350894/bios.png" name="BiosCrypto"></div>
+		        <div class="searchCoinInfo">
+		        	<div class="coinName leadName"></div>
+			        <div class="coinCost leadCost"></div>
+			        <div class="coinPercentage leadPer positiveInc"></div>
+			        <div class="priceData">
+		            	<h4>MKTCAP</h4>
+		            	<p class="mktcapLeader"></p>
+		        	</div>
+		        	<div class="priceData">
+		            	<h4>Vol.24</h4>
+		            	<p class="volLeader"></p>
+		    		</div>
+		        	<div class="priceData">
+		            	<h4>Open 24</h4>
+		            	<p class="openLeader"></p>
+		           	</div>
+		        </div>
+		        <div class="searchRanking">
+					<h2>Rank</h2>
+					<p>1th</p>
+				</div> 
+	    	</div>
+	    	
+	    	<div id="dayLeaderChart"></div>
 	    </section>
 
 		<div class="searchresult">
 			<div class="flex">
-				<div class="imageIcon"><img src="https://www.cryptocompare.com/media/350894/bios.png" name="BiosCrypto"></div>
-				<div>
+				<div class="imageIcon"><img class="searchIcon" src="https://www.cryptocompare.com/media/350894/bios.png" name="BiosCrypto"></div>
+				<div class="searchCoinInfo">
 				   <div class="coinName">Bitcoin (BTC)</div>
-				   <div class="coinCost">$1,058</div>
-				   <div class="coinPercentage positiveInc">20.54</div>
-				   <div></div>
-				  
+		           <div class="coinCost">$1,058</div>
+		           <div class="coinPercentage positiveInc">20.54</div>
+		           <div class="priceData">
+		             <h4>MKTCAP</h4>
+		             <p class="mktcapSearch">$191.53B</p>
+		           </div>
+		           <div class="priceData">
+		             <h4>Vol.24</h4>
+		             <p class="volSearch">$191.53B</p>
+		           </div>
+		           <div class="priceData">
+		             <h4>Open 24</h4>
+		             <p class="openSearch">$191.53B</p>
+		           </div>
 				</div>
 				<div class="searchRanking">
 				  <h2>Rank</h2>
-				  <p>5th</p>
+				  <p>1th</p>
 				</div>  
 		    </div>
 			<div id="searchChart"></div>

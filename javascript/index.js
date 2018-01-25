@@ -7,7 +7,7 @@ let listOfCoins;
 //this vairable will store the price data for coins
 let currerntCoinPriceData;
 //this variable holds the % change by highest to lowest
-const highToLowPct = [];
+let highToLowPct = [];
 //number of coins called
 const requestedNumber = 50;
 
@@ -28,7 +28,7 @@ function addDataToGeneralInfo(data) {
   listOfCoins = Object.keys(basicCoinInfo);
   getCurrnetPriceData(cryptoComparePriceUrl,listOfCoins, updateData, requestedNumber);
   // the intervial will be set here
-  // setInterval( priceInterval, 10000);
+  setInterval( priceInterval, 30000);
 }
 
 function priceInterval() {
@@ -39,7 +39,6 @@ function priceInterval() {
 //this fuunction will call the price data for all the coins 
 function getCurrnetPriceData(url, coinlist, callback, numberOfCoins) {
 	let query = url + 'fsyms='+ coinlist.slice(0,numberOfCoins).join(",") + '&tsyms=USD';
-	console.log(query);
 	$.getJSON(query, callback);
 }
 
@@ -47,9 +46,7 @@ function getCurrnetPriceData(url, coinlist, callback, numberOfCoins) {
 //this function puts price data in a variable where it can be used
 function updateData(data) {
 	currerntCoinPriceData = data.DISPLAY;
-
 	fromObjectToArray(currerntCoinPriceData, requestedNumber, listOfCoins);
-	console.log(basicCoinInfo);
 	loadTopWinThreeCoin (highToLowPct, basicCoinInfo);
 	loadTopLosThreeCoin (highToLowPct, basicCoinInfo);
 	loadLeaderLoserBoard(highToLowPct, basicCoinInfo);
@@ -58,7 +55,8 @@ function updateData(data) {
 
 //this funcition take the data from the JSON and puts it in an area which sorts it from heightest percent change to lowest
 function fromObjectToArray(data, numberOfCoins, listOfCoins) {
-	console.log('fromObjectToArray: rendered')
+	console.log('fromObjectToArray: rendered');
+	highToLowPct = [];
 	for(let i = 0; i < numberOfCoins; i ++){
 		highToLowPct.push(data[listOfCoins[i]]);
 		highToLowPct[i].USD.KEY = listOfCoins[i];
@@ -71,7 +69,6 @@ function fromObjectToArray(data, numberOfCoins, listOfCoins) {
 
 //this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
 function topWinnerHtml(priceData, coinInfo) {
-	console.log("topWinnerHtml:" + JSON.stringify(coinInfo));
 	return `<li>
 				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
 				<div class="topContent"><p>${coinInfo.FullName} <span class="priceInc">${priceData.USD.PRICE}</span></p></div>
@@ -81,7 +78,6 @@ function topWinnerHtml(priceData, coinInfo) {
 
 //this function loads the top 3 coins with % change
 function loadTopWinThreeCoin (arr, basicInfo) {
-	console.log(basicInfo);
 	let htmlContent = arr.slice(0, 3).map(function(priceData) {
 		console.log(priceData);
 		return topWinnerHtml(priceData, basicInfo[priceData.USD.KEY]);
@@ -163,8 +159,6 @@ function usableChartData(json) {
 }
 
 
-//this will call data for the lead coin and put it in the main page chart
-
 //this is a chart fucntion which takes a few argument
 function finChart(url, idHTML , key){
 	const query = {
@@ -207,16 +201,26 @@ function leaderShown() {
 	let imgIcon = `https://www.cryptocompare.com${basicCoinInfo[winningCoin].ImageUrl}`;
 	let name = basicCoinInfo[winningCoin].FullName;
 	let currPrice = highToLowPct[0].USD.PRICE;
-	let perChg =highToLowPct[0].USD.CHANGEPCTDAY;
-	$(".imageIcon img").attr('src', imgIcon);
-	$(".coinName").text(name);
-	$(".coinCost").text(currPrice);
-	$(".coinPercentage").text(perChg);
+	let perChg = highToLowPct[0].USD.CHANGEPCTDAY;
+	let marketCap = highToLowPct[0].USD.MKTCAP;
+	let volume = highToLowPct[0].USD.VOLUME24HOURTO;
+	let open = highToLowPct[0].USD.OPEN24HOUR;
+	$(".leadIcon").attr('src', imgIcon);
+	$(".leadName").text(name);
+	$(".leadCost").text(currPrice);
+	$(".leadPer").text(perChg);
+	$(".mktcapLeader").text(marketCap);
+	$(".volLeader").text(volume);
+	$(".openLeader").text(open);
 	finChart(histPriceDayUrl, 'dayLeaderChart' , winningCoin); 
 }
 
 //this function takes a users input and retuns search result
 function cryptoSearch() {
+	$(".finder").on("submit", function (e) {
+		e.preventDefault();
+		const userInput = $("#search").val();
+	});
 	finChart(histPriceDayUrl, "searchChart" , "BTC");
 }
 
