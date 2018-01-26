@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	position: relative;
 }
 
 header {
@@ -139,15 +140,27 @@ a:active  {
 	font-size: 16px;
 }
 
+.positiveIncrease:before {
+	content: "\f0d8";
+	font-family: FontAwesome;
+	color: green;
+}
+
 .negativeIncrease {
 	display: inline-block;
 	color: red;
 	font-size: 16px;
 }
 
-.leader-looser, .aboutContent {
+.negativeIncrease:before {
+	content: "\f0d7";
+	font-family: FontAwesome;
+	color: red;
+}
+
+.modal{
 	display: none;
-	position: absolute;
+	position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -155,30 +168,34 @@ a:active  {
 }
 
 .leader-looser{
-	xsoverflow-y: scroll;
-    height: 100vh;
+	overflow-y: scroll;
+    height: 97vh;
+   
 }
 
-.boardclose, .aboutclose {
+.boardclose, .aboutclose, .searchclose {
 	float: right;
     position: relative;
     top: -40px;
 }
 
-.leader-looser .container, .aboutContent .container {
+.leader-looser .container, .aboutContent .container, .searchresult .container {
 	background-color: gray;
 	box-sizing: border-box;
 	padding: 20px;
 }
 
-/*leader chart css*/
 .dayLeader, .searchresult {
-	background-color: #faf2ff;
 	box-sizing: border-box;
 	padding: 10px;
 	width: 100%;
+	min-height: 520px;
 	margin-bottom: 50px;
   
+}
+
+.dayLeader {
+	background-color: #faf2ff;                                                  
 }
 
 .imageIcon {
@@ -258,9 +275,11 @@ a:active  {
 
 
 footer {
-	position: relative;
+	position: absolute;
+	right: 0;
 	bottom: 0;
-   	width:100%;
+	left: 0;
+   	/*width:100%;*/
    	background-color: black;
    	color: white;
    	text-align: center;

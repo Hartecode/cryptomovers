@@ -72,8 +72,17 @@ function topWinnerHtml(priceData, coinInfo) {
 	return `<li>
 				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
 				<div class="topContent"><p>${coinInfo.FullName} <span class="priceInc">${priceData.USD.PRICE}</span></p></div>
-				<div class="pecentageArrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></div><div class="positiveIncrease">${priceData.USD.CHANGEPCTDAY}%</div>
+				<div class="pecentageArrow"></div><div class="${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}%</div>
 			</li>`
+}
+
+//this fucntion identifies if the interger is positive or negative and assignes the corresponding class 
+function positiveNegativeColor(int) {
+	if(int >= 0) {
+		return "positiveIncrease";
+	} else {
+		return "negativeIncrease";
+	}
 }
 
 //this function loads the top 3 coins with % change
@@ -92,7 +101,7 @@ function topLosserHtml(priceData, coinInfo) {
 			<li>
 				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
 				<div class="topContent"><p>${coinInfo.FullName} <span class="priceDec">${priceData.USD.PRICE}</span></p></div>
-				<div class="pecentageArrow"><i class="fa fa-caret-down" aria-hidden="true"></i></div><div class="negativeIncrease">${priceData.USD.CHANGEPCTDAY}%</div>
+				<div class="pecentageArrow"></div><div class="${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}%</div>
 			</li>`
 }
 
@@ -112,7 +121,7 @@ function boardHtml(priceData, coinInfo) {
 	return `<li>
 				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
 				<div class="topContent"><p>${coinInfo.FullName} <span class="priceInc">${priceData.USD.PRICE}</span></p></div>
-				<div class="pecentageArrow"><i class="fa fa-sort-asc" aria-hidden="true"></i></div><div class="positiveIncrease">${priceData.USD.CHANGEPCTDAY}%</div>
+				<div class="pecentageArrow"></div><div class="${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}%</div>
 			</li>`
 }
 
@@ -219,12 +228,50 @@ function leaderShown() {
 function cryptoSearch() {
 	$(".finder").on("submit", function (e) {
 		e.preventDefault();
-		const userInput = $("#search").val();
+		let userInput = $("#search").val().toUpperCase();
+		let searchResult = highToLowPct.find(function (e) {
+			return e.USD.KEY === userInput;
+		});
+
+		if(searchResult != undefined) {
+			console.log("render search result:"+ JSON.stringify(searchResult));
+			$(".searchGenInfo").html(searchHtml(searchResult, basicCoinInfo[searchResult.USD.KEY]))
+			finChart(histPriceDayUrl, "searchChart" , searchResult.USD.KEY);
+			$(".searchresult").fadeIn();
+		} else{
+			console.log("search result not found");
+		}
 	});
-	finChart(histPriceDayUrl, "searchChart" , "BTC");
+	$('.searchclose').on('click', function(){
+		$('.searchresult').css('display', 'none');
+	});
 }
 
-// function interval()
+// function holds the html of detailed info on the coin
+function searchHtml(priceData, basicInfo) {
+	return `<div class="imageIcon"><img class="searchIcon" src="https://www.cryptocompare.com${basicInfo.ImageUrl}" name="${basicInfo.CoinName}"></div>
+				<div class="searchCoinInfo">
+				   <div class="coinName">${basicInfo.FullName}</div>
+		           <div class="coinCost">${priceData.USD.PRICE}</div>
+		           <div class="coinPercentage ${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}</div>
+		           <div class="priceData">
+		             <h4>MKTCAP</h4>
+		             <p class="mktcapSearch">${priceData.USD.MKTCAP}</p>
+		           </div>
+		           <div class="priceData">
+		             <h4>Vol.24</h4>
+		             <p class="volSearch">${priceData.USD.VOLUME24HOURTO}</p>
+		           </div>
+		           <div class="priceData">
+		             <h4>Open 24hr</h4>
+		             <p class="openSearch">${priceData.USD.OPEN24HOUR}</p>
+		           </div>
+				</div>
+				<div class="searchRanking">
+				  <h2>Rank</h2>
+				  <p>${highToLowPct.findIndex(obj => obj.USD.KEY === priceData.USD.KEY) + 1}</p>
+				</div>  `;
+}
 
 //this function runs the program
 function runApp() {
