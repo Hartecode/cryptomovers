@@ -17,6 +17,10 @@ const cryptoComparePriceUrl = "https://min-api.cryptocompare.com/data/pricemulti
 //url historical price url
 const histPriceDayUrl = "https://min-api.cryptocompare.com/data/histoday?";
 
+//url news info
+
+const cryptoNewsUrl = "https://min-api.cryptocompare.com/data/news/";
+
 //this function will get data from the coinlist api
 function getBasicInfo(callback) {
 	$.getJSON("https://min-api.cryptocompare.com/data/all/coinlist", callback );
@@ -28,7 +32,7 @@ function addDataToGeneralInfo(data) {
   listOfCoins = Object.keys(basicCoinInfo);
   getCurrnetPriceData(cryptoComparePriceUrl,listOfCoins, updateData, requestedNumber);
   // the intervial will be set here
-  setInterval( priceInterval, 30000);
+  // setInterval( priceInterval, 30000);
 }
 
 function priceInterval() {
@@ -68,12 +72,13 @@ function fromObjectToArray(data, numberOfCoins, listOfCoins) {
 }
 
 //this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
-function topWinnerHtml(priceData, coinInfo) {
-	return `<li>
-				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
-				<div class="topContent"><p>${coinInfo.FullName} <span class="priceInc">${priceData.USD.PRICE}</span></p></div>
-				<div class="pecentageArrow"></div><div class="${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}%</div>
-			</li>`
+function topThreeHtml(priceData, coinInfo) {
+	console.log("topThreeHTML: rendered")
+	return `<div class='topresult'>
+				<div class='top3sym'><img src='https://www.cryptocompare.com${coinInfo.ImageUrl}' name='${coinInfo.CoinName}'></div>
+				<div class='topContent'><p>${coinInfo.FullName}</p></div>
+				<div class='pecentageArrow'></div><div class='${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}'>${priceData.USD.CHANGEPCTDAY}%</div>
+			</div>`
 }
 
 //this fucntion identifies if the interger is positive or negative and assignes the corresponding class 
@@ -89,20 +94,11 @@ function positiveNegativeColor(int) {
 function loadTopWinThreeCoin (arr, basicInfo) {
 	let htmlContent = arr.slice(0, 3).map(function(priceData) {
 		console.log(priceData);
-		return topWinnerHtml(priceData, basicInfo[priceData.USD.KEY]);
+		return topThreeHtml(priceData, basicInfo[priceData.USD.KEY]);
 	});
+	console.log(htmlContent);
 
 	$('.topWin3results').html(htmlContent);
-}
-
-//this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
-function topLosserHtml(priceData, coinInfo) {
-	return `
-			<li>
-				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
-				<div class="topContent"><p>${coinInfo.FullName} <span class="priceDec">${priceData.USD.PRICE}</span></p></div>
-				<div class="pecentageArrow"></div><div class="${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}%</div>
-			</li>`
 }
 
 //this function loads the top 3 coins with % change
@@ -110,10 +106,10 @@ function loadTopLosThreeCoin (arr, basicInfo) {
 	let htmlContent = []
 
 	arr.slice(-3).forEach(function(priceData) {
-		htmlContent.unshift(topLosserHtml(priceData, basicInfo[priceData.USD.KEY]));
+		htmlContent.unshift(topThreeHtml(priceData, basicInfo[priceData.USD.KEY]));
 	});
-
-	$('.topLos3results').html(htmlContent);
+	console.log(htmlContent);
+	$('.topLoss3results').html(htmlContent);
 }
 
 //this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
@@ -143,8 +139,12 @@ function llboardButton() {
 	});
 
 	$('.boardclose').on('click', function(){
-		$('.leader-looser').css('display', 'none');
+		$('.leader-looser').css('display', 'none');	
 	});
+
+	// $(window).on('click', function(){
+	// 	$('.leader-looser').css('display', 'none');
+	// });
 }
 
 //this function displays and closes the about modal
@@ -156,6 +156,10 @@ function aboutButton() {
 	$('.aboutclose').on('click', function(){
 		$('.aboutContent').css('display', 'none');
 	});
+
+	// $(window).on('click', function(){
+	// 	$('.aboutContent').css('display', 'none');
+	// });
 }
 
 //this function converts the data from the json to a usable array for chart
@@ -207,20 +211,8 @@ function finChart(url, idHTML , key){
 //this function will load the the info for lead coin info
 function leaderShown() {
 	let winningCoin = highToLowPct[0].USD.KEY;
-	let imgIcon = `https://www.cryptocompare.com${basicCoinInfo[winningCoin].ImageUrl}`;
-	let name = basicCoinInfo[winningCoin].FullName;
-	let currPrice = highToLowPct[0].USD.PRICE;
-	let perChg = highToLowPct[0].USD.CHANGEPCTDAY;
-	let marketCap = highToLowPct[0].USD.MKTCAP;
-	let volume = highToLowPct[0].USD.VOLUME24HOURTO;
-	let open = highToLowPct[0].USD.OPEN24HOUR;
-	$(".leadIcon").attr('src', imgIcon);
-	$(".leadName").text(name);
-	$(".leadCost").text(currPrice);
-	$(".leadPer").text(perChg);
-	$(".mktcapLeader").text(marketCap);
-	$(".volLeader").text(volume);
-	$(".openLeader").text(open);
+	let winnerPriceData = highToLowPct[0];
+	$(".leaderData").html(searchHtml(winnerPriceData, basicCoinInfo[winningCoin]));
 	finChart(histPriceDayUrl, 'dayLeaderChart' , winningCoin); 
 }
 
@@ -235,16 +227,22 @@ function cryptoSearch() {
 
 		if(searchResult != undefined) {
 			console.log("render search result:"+ JSON.stringify(searchResult));
-			$(".searchGenInfo").html(searchHtml(searchResult, basicCoinInfo[searchResult.USD.KEY]))
+			$(".searchGenInfo").html(searchHtml(searchResult, basicCoinInfo[searchResult.USD.KEY]));
 			finChart(histPriceDayUrl, "searchChart" , searchResult.USD.KEY);
 			$(".searchresult").fadeIn();
 		} else{
 			console.log("search result not found");
 		}
 	});
+
 	$('.searchclose').on('click', function(){
 		$('.searchresult').css('display', 'none');
 	});
+
+	$(window).on('click', function(){
+		$('.modal').css('display', 'none');
+	});
+
 }
 
 // function holds the html of detailed info on the coin
@@ -253,7 +251,7 @@ function searchHtml(priceData, basicInfo) {
 				<div class="searchCoinInfo">
 				   <div class="coinName">${basicInfo.FullName}</div>
 		           <div class="coinCost">${priceData.USD.PRICE}</div>
-		           <div class="coinPercentage ${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}</div>
+		           <div class="coinPercentage ${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}%</div>
 		           <div class="priceData">
 		             <h4>MKTCAP</h4>
 		             <p class="mktcapSearch">${priceData.USD.MKTCAP}</p>
@@ -269,8 +267,35 @@ function searchHtml(priceData, basicInfo) {
 				</div>
 				<div class="searchRanking">
 				  <h2>Rank</h2>
-				  <p>${highToLowPct.findIndex(obj => obj.USD.KEY === priceData.USD.KEY) + 1}</p>
+				  <p>${highToLowPct.findIndex(obj => obj.USD.KEY === priceData.USD.KEY) + 1}/50</p>
 				</div>  `;
+}
+
+//this function holds the html for the news links 
+function newsHtml(obj){
+	return `<article role="article">
+				<a href="${obj.url}" target="_blank">
+					<div class='newsImgBox'><img src="${obj.imageurl}"></div>
+					<div class="newsTitleBox">
+						<h4>${obj.title}</h4>
+						<p>${obj.source_info.name}</p>
+					</div>
+				</a>
+			</article>`;
+}
+
+//this funtion loops through the josn to render the news articles 
+function renderNews(json) {
+	let htmlContent = json.slice(0, 8).map(function(obj) {
+		return newsHtml(obj);
+	});
+
+	$(".news").html(htmlContent);
+}
+
+//this function gets the crypto news info by api call
+function getNewsInfo(url, callback) {
+	$.getJSON(url, callback);
 }
 
 //this function runs the program
@@ -279,6 +304,7 @@ function runApp() {
 	llboardButton();
 	aboutButton();
 	cryptoSearch();
+	getNewsInfo(cryptoNewsUrl, renderNews)
 }
 
 

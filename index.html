@@ -11,42 +11,75 @@
 <body>
 	<header role="banner">
 		<div class="title">
-			<h1>Crypto Winners/Losers</h1>		
+			<h1><span class="navopenbars"><i class="fa fa-bars" aria-hidden="true"></i></span>Crypto Movers</h1>		
 		</div>
 		
 		<nav role="navigation">
-			<ul>
+
+			<div id="mySidenav" class="sidenav">
+				<i class="fa fa-times fa-3x" aria-hidden="true"></i>
+				<form class="finder">
+					<fieldset>
+						<label for="search"></label>
+						<input id="search" type="text" name="search" placeholder="Search by name/symbole">
+						<button type="submit" name="search">Search</button>
+					</fieldset>
+				</form>
+				<ul>
+					<li><a class="about" href="#">About</a></li>
+					<li><a class="LLBoard" href="#">Leader/Loser Board</a></li>
+				</ul>
+			</div>
+
+			<ul class="navfullscreenlinks">
 				<li><a class="about" href="#">About</a></li>
 				<li><a class="LLBoard" href="#">Leader/Loser Board</a></li>
 			</ul>
-			<form class="finder">
-			<fieldset>
-				<label for="search"></label>
-				<input id="search" type="text" name="search" placeholder="Search by name/symbole">
-				<button type="submit" name="search">Search</button>
-			</fieldset>
-		</form>
+			<form id="fullscreenfinder" class="finder">
+				<fieldset>
+					<label for="search"></label>
+					<input id="search" type="text" name="search" placeholder="Search by name/symbole">
+					<button type="submit" name="search">Search</button>
+				</fieldset>
+			</form>
 		</nav>
 		
 	</header>
-	<main class="container flex" role="main">
-		
-		<section class="topthreewinner" role="region">
-			<h2 class="topheader">Days Top 3 Winners</h2>
-			<div>
-				<ol class="topWin3results">
-					
-				</ol>
-			</div>
-		</section>
 
-		<section class="topthreeloser" role="region">
-			<h2 class="topheader">Days Top 3 Losers</h2>
-			<div>
-				<ol class="topLos3results">
-				</ol>
-			</div>
-		</section>
+	<main class="container" role="main">
+		<div id='snapshotData'>
+			<section class="topthreebox" role="region">
+				<div>
+					<h2 class="topheader">Top 3 Winners</h2>
+					<div class="topWin3results">
+						<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
+					</div>
+				</div>	
+			</section>
+
+			<section class="topthreebox" role="region">
+				<div>
+					<h2 class="topheader">Top 3 Losers</h2>
+					<div class="topLoss3results">
+						<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
+					</div>
+				</div>
+			</section>
+
+			<section class="dayLeader" role="region">
+		    	<div class="leaderData">
+			        <i class="fa fa-btc fa-5x" aria-hidden="true"></i>	
+		    	</div>	
+		    	<div id="dayLeaderChart">
+		    		<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
+		    	</div>
+		    </section>
+		</div>
+		<div class="news">	
+			<i class="fa fa-btc fa-5x" aria-hidden="true"></i>		
+		</div>
+		
+		
 		<section class="aboutContent modal" role="region">
 			<div class="container">
 				<h2 class="topheader"> About</h2>
@@ -66,66 +99,12 @@
 			
 		</section>
 
-		<!-- <section class="" role="region">
-			<div></div>
-			<div id="winnerChart"></div>
-		</section> -->
-
-		<section class="dayLeader" role="region">
-	    	<div class="flex">
-		        <div class="imageIcon "><img class="leadIcon" src="" name=""></div>
-		        <div class="searchCoinInfo">
-		        	<div class="coinName leadName"></div>
-			        <div class="coinCost leadCost"></div>
-			        <div class="coinPercentage leadPer positiveIncrease"></div>
-			        <div class="priceData">
-		            	<h4>MKTCAP</h4>
-		            	<p class="mktcapLeader"></p>
-		        	</div>
-		        	<div class="priceData">
-		            	<h4>Vol.24</h4>
-		            	<p class="volLeader"></p>
-		    		</div>
-		        	<div class="priceData">
-		            	<h4>Open 24</h4>
-		            	<p class="openLeader"></p>
-		           	</div>
-		        </div>
-		        <div class="searchRanking">
-					<h2>Rank</h2>
-					<p>1</p>
-				</div> 
-	    	</div>
-	    	
-	    	<div id="dayLeaderChart"></div>
-	    </section>
+		
 
 		<div class="searchresult modal">
 			<div class="container">
 				<div class="searchGenInfo flex">
-				<div class="imageIcon"><img class="searchIcon" src="https://www.cryptocompare.com/media/350894/bios.png" name="BiosCrypto"></div>
-				<div class="searchCoinInfo">
-				   <div class="coinName">Bitcoin (BTC)</div>
-		           <div class="coinCost">$1,058</div>
-		           <div class="coinPercentage positiveInc">20.54</div>
-		           <div class="priceData">
-		             <h4>MKTCAP</h4>
-		             <p class="mktcapSearch">$191.53B</p>
-		           </div>
-		           <div class="priceData">
-		             <h4>Vol.24</h4>
-		             <p class="volSearch">$191.53B</p>
-		           </div>
-		           <div class="priceData">
-		             <h4>Open 24</h4>
-		             <p class="openSearch">$191.53B</p>
-		           </div>
-				</div>
-				<div class="searchRanking">
-				  <h2>Rank</h2>
-				  <p>1</p>
-				</div>  
-		    </div>
+			    </div>
 		    <div class="searchclose"><i class="fa fa-times" aria-hidden="true"></i></div>
 			<div id="searchChart"></div>
 			</div>	
