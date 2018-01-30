@@ -72,6 +72,9 @@ main .container{
 	padding-top: 5px;
 }
 
+#snapshotData {
+	background-color: white;
+}
 
 .topthreebox {
     box-sizing: border-box;
@@ -213,6 +216,8 @@ main .container{
 
 #dayLeaderChart {
 	height: 400px;
+	width: 100%;
+	margin: auto;
 }
 
 .imageIcon {
@@ -291,19 +296,20 @@ main .container{
 	margin: 0;
 }
 
-#dayLeaderChart {
-	width: 100%;
-	margin: auto;
-}
 
 /*This is for all the news links*/
+.news{
+	background-color: white;
+}
+
+
 article {
 	box-sizing: border-box;
-	box-shadow: -1px -1px 1px black;
+	/*box-shadow: -1px -1px 1px black;*/
 	padding: 5px;
 	font-size: 0;
-	-webkit-transition: all 2s;
-    transition: all .8s;	
+	-webkit-transition: all .6s;
+    transition: all .6s;	
 }
 
 article:hover {
@@ -353,7 +359,7 @@ article a:hover   {
 	display: none;
 }
 
-.sidenav {
+#mySidenav {
 	background-color: black;
     position: fixed;
     height: 100%;
@@ -362,6 +368,9 @@ article a:hover   {
     left: 0;
     z-index: 1;
     overflow-x: hidden;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+
 }
 /*this css controls the footer and its elements*/
 footer {

@@ -64,6 +64,7 @@ function fromObjectToArray(data, numberOfCoins, listOfCoins) {
 	for(let i = 0; i < numberOfCoins; i ++){
 		highToLowPct.push(data[listOfCoins[i]]);
 		highToLowPct[i].USD.KEY = listOfCoins[i];
+		highToLowPct[i].USD.CoinName = basicCoinInfo[listOfCoins[i]].CoinName.toUpperCase();
 	}
 	//sort the objects from hights percentage change in a day
 	highToLowPct.sort(function(a,b){
@@ -74,8 +75,8 @@ function fromObjectToArray(data, numberOfCoins, listOfCoins) {
 //this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
 function topThreeHtml(priceData, coinInfo) {
 	console.log("topThreeHTML: rendered")
-	return `<div class='topresult'>
-				<div class='top3sym'><img src='https://www.cryptocompare.com${coinInfo.ImageUrl}' name='${coinInfo.CoinName}'></div>
+	return `<div class='topresult fullcoindataresults'>
+				<div class='top3sym'><img src='https://www.cryptocompare.com${coinInfo.ImageUrl}' alt="${priceData.USD.KEY}" name='${coinInfo.CoinName}'></div>
 				<div class='topContent'><p>${coinInfo.FullName}</p></div>
 				<div class='pecentageArrow'></div><div class='${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}'>${priceData.USD.CHANGEPCTDAY}%</div>
 			</div>`
@@ -114,8 +115,8 @@ function loadTopLosThreeCoin (arr, basicInfo) {
 
 //this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
 function boardHtml(priceData, coinInfo) {
-	return `<li>
-				<img class="top3sym" src="https://www.cryptocompare.com${coinInfo.ImageUrl}" name="${coinInfo.CoinName}">
+	return `<li class="fullcoindataresults">
+				<div class='top3sym'><img src='https://www.cryptocompare.com${coinInfo.ImageUrl}' alt="${priceData.USD.KEY}" name='${coinInfo.CoinName}'></div>
 				<div class="topContent"><p>${coinInfo.FullName} <span class="priceInc">${priceData.USD.PRICE}</span></p></div>
 				<div class="pecentageArrow"></div><div class="${positiveNegativeColor(priceData.USD.CHANGEPCTDAY)}">${priceData.USD.CHANGEPCTDAY}%</div>
 			</li>`
@@ -142,9 +143,6 @@ function llboardButton() {
 		$('.leader-looser').css('display', 'none');	
 	});
 
-	// $(window).on('click', function(){
-	// 	$('.leader-looser').css('display', 'none');
-	// });
 }
 
 //this function displays and closes the about modal
@@ -156,10 +154,6 @@ function aboutButton() {
 	$('.aboutclose').on('click', function(){
 		$('.aboutContent').css('display', 'none');
 	});
-
-	// $(window).on('click', function(){
-	// 	$('.aboutContent').css('display', 'none');
-	// });
 }
 
 //this function converts the data from the json to a usable array for chart
@@ -221,8 +215,19 @@ function cryptoSearch() {
 	$(".finder").on("submit", function (e) {
 		e.preventDefault();
 		let userInput = $("#search").val().toUpperCase();
-		let searchResult = highToLowPct.find(function (e) {
-			return e.USD.KEY === userInput;
+		console.log(userInput)
+		findAndDisplay(userInput);
+
+	$('.searchclose').on('click', function(){
+		$('.searchresult').css('display', 'none');
+	});
+});
+
+////this takes an string and return search html
+function findAndDisplay(str) {
+	$('.modal').css('display', 'none');
+	let searchResult = highToLowPct.find(function (e) {
+			return e.USD.KEY === str ||  e.USD.CoinName === str;
 		});
 
 		if(searchResult != undefined) {
@@ -233,17 +238,30 @@ function cryptoSearch() {
 		} else{
 			console.log("search result not found");
 		}
-	});
-
-	$('.searchclose').on('click', function(){
-		$('.searchresult').css('display', 'none');
-	});
-
-	$(window).on('click', function(){
-		$('.modal').css('display', 'none');
-	});
-
+	}
 }
+
+//this function runs the click listiner for the coins. when a coin is clicked it displays the full info
+function showFullData() {
+	console.log("render: showFullData");
+	$('div').on('click', '.fullcoindataresults', function() {
+		console.log("render: showFullData");
+		console.log($(this).find("img"));	
+		let coin = $(this).find("img").attr("alt");
+		$('.modal').css('display', 'none');
+		let searchResult = highToLowPct.find(function (e) {
+			return e.USD.KEY === coin;
+		});
+
+		if(searchResult != undefined) {
+			console.log("render search result:"+ JSON.stringify(searchResult));
+			$(".searchGenInfo").html(searchHtml(searchResult, basicCoinInfo[searchResult.USD.KEY]));
+			finChart(histPriceDayUrl, "searchChart" , searchResult.USD.KEY);
+			$(".searchresult").fadeIn();
+		}
+	});
+}
+
 
 // function holds the html of detailed info on the coin
 function searchHtml(priceData, basicInfo) {
@@ -298,13 +316,26 @@ function getNewsInfo(url, callback) {
 	$.getJSON(url, callback);
 }
 
+//this function handles the click listeners for the side nav bar
+function responsiveNav(){
+	$('#navopen').on("click", function(){
+		$('#mySidenav').css('width', '300px');
+	});
+
+	$('#navclose, #mySidenav .about, #mySidenav .LLBoard, #mySidenav button').on("click", function(){
+		$('#mySidenav').css('width', '0');
+	});
+}
+
 //this function runs the program
 function runApp() {
 	getBasicInfo(addDataToGeneralInfo);
 	llboardButton();
 	aboutButton();
 	cryptoSearch();
-	getNewsInfo(cryptoNewsUrl, renderNews)
+	getNewsInfo(cryptoNewsUrl, renderNews);
+	responsiveNav();
+	showFullData();
 }
 
 
