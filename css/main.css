@@ -1,19 +1,16 @@
 body {
 	margin: 0;
 	background-color: #faf2ff;
-	/*position: relative;
-*/}
+	font-family: 'Roboto', sans-serif;
+}
 
 header {
 	background-color: black;
 	height: 60px;
 	color: white;
-	position: fixed;
-	top: 0;
 	width: 100%;
 	box-sizing: border-box;
 	padding: 10px;
-	z-index: 2;
 }
 
 .title {
@@ -31,6 +28,9 @@ h2 {
 	font-size: 23px;
 }
 
+p {
+	font-size: 16px;
+}
 
 
 fieldset {
@@ -59,26 +59,26 @@ a:active  {
 	color: white;
 } 
 
-main .container{
+/*main .container{
 	background-color: white;
 }
-
+*/
 
 .container {
+	font-size: 0;
 	max-width: 1000px;
 	margin-right: auto;
 	margin-left:  auto;
-	margin-top: 60px;
 	padding-top: 5px;
 }
 
 #snapshotData {
-	background-color: white;
+	/*background-color: white;*/
 }
 
 .topthreebox {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 5px;
     width: 100%;
     margin-bottom: 5px;
 
@@ -95,9 +95,10 @@ main .container{
 }
 
 .topresult, .llboardresults li {
-	height: 50px;
-	box-sizing: border-box;
-	font-size: 20px;
+	height: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 16px
 }
 
 .topresult:nth-child(1) {
@@ -138,7 +139,6 @@ main .container{
 
 .pecentageArrow {
 	float: left;
-	/*margin-left: 16px*/;
 }
 
 .fa-sort-asc {
@@ -152,6 +152,7 @@ main .container{
 .positiveIncrease {
 	display: inline-block;
 	color: green;
+	float: right;
 }
 
 .positiveIncrease:before {
@@ -163,6 +164,7 @@ main .container{
 .negativeIncrease {
 	display: inline-block;
 	color: red;
+	float: right;
 }
 
 .negativeIncrease:before {
@@ -173,11 +175,19 @@ main .container{
 
 .modal{
 	display: none;
+	box-sizing: border-box;
+	padding: 20px;
 	position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+	background-color: white;
+	padding: 10px;
 }
 
 .leader-looser{
@@ -187,20 +197,19 @@ main .container{
 }
 
 .boardclose, .aboutclose, .searchclose {
-	float: right;
-    position: relative;
-    top: -40px;
+	font-size: 50px;
+    position: absolute;
+    top: 12;
 }
 
-.leader-looser .container, .aboutContent .container, .searchresult .container {
-	background-color: gray;
-	box-sizing: border-box;
-	padding: 20px;
+div.boardclose {
+	top: 20;
 }
+
 
 .dayLeader, .searchresult {
 	box-sizing: border-box;
-	padding: 10px;
+	padding: 5px;
 	width: 100%;
 	min-height: 520px;
 	margin-bottom: 50px;
@@ -243,7 +252,7 @@ main .container{
 .coinName{
   font-size: 20px;
   display: inline-block;
-  width: 40%;
+  width: 30%;
   height: 50%;
 }
 
@@ -260,7 +269,7 @@ main .container{
   text-align: center;
   margin: auto;
   display: inline-block;
-  width: 30%;
+  width: 40%;
   height: 50%;
   font-size: 20px;
 }
@@ -296,24 +305,36 @@ main .container{
 	margin: 0;
 }
 
+.innerbox {
+	box-sizing: border-box;
+	background-color: white;
+    box-shadow: 1px 1px 10px 1px #b7a6a6;
+    padding: 5px;
+}
 
 /*This is for all the news links*/
 .news{
-	background-color: white;
+	box-sizing: border-box;
+	padding: 5px;
+	text-align: center;
 }
 
 
 article {
 	box-sizing: border-box;
-	/*box-shadow: -1px -1px 1px black;*/
+	text-align: left;
 	padding: 5px;
 	font-size: 0;
+	background-color: white;
+    margin-bottom: 5px;
+    box-shadow: 1px 1px 10px 1px #b7a6a6;
 	-webkit-transition: all .6s;
     transition: all .6s;	
 }
 
 article:hover {
-	box-shadow: 3px 2px 8px black;
+	box-shadow: 3px 4px 8px 1px black;
+	/*box-shadow: 3px 2px 8px black;*/
 }
 
 article a:hover   {
@@ -374,12 +395,14 @@ article a:hover   {
 }
 /*this css controls the footer and its elements*/
 footer {
-	display: none;
-	position: absolute;
+
+	/*position: absolute;
 	right: 0;	
 	bottom: 0;
-	left: 0;
-   	/*width:100%;*/
+	left: 0;*/
+	float: left;
+   	width:100%;
+   	height: 20px;
    	background-color: black;
    	color: white;
    	text-align: center;
@@ -418,6 +441,22 @@ footer {
 
 }
 
+@media screen and (min-width: 780px) {
+	.llboardresults{
+		padding-left: 75px;
+	}
+
+	.llboardresults .topContent p{
+		font-size: 37px;
+	}
+
+	.llboardresults li {
+		height: 40px;
+		font-size: 37px;
+	}
+
+}
+
 @media screen and (min-width: 880px) {
 	nav  {
 		float: right
@@ -437,6 +476,10 @@ footer {
 
 	header form {
 		display: inline-block;
+	}
+
+	#mySidenav {
+		display: none;
 	}
 
 	.navopenbars {

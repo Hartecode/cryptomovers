@@ -214,14 +214,20 @@ function leaderShown() {
 function cryptoSearch() {
 	$(".finder").on("submit", function (e) {
 		e.preventDefault();
-		let userInput = $("#search").val().toUpperCase();
+		
+		//if input 1 has a val of 0 the use input from 
+		let userInput = ($(window).width() >= 880) ? $(".secinputsearch").val().toUpperCase(): $(".inputonesearch").val().toUpperCase();
+
 		console.log(userInput)
 		findAndDisplay(userInput);
-
-	$('.searchclose').on('click', function(){
-		$('.searchresult').css('display', 'none');
-	});
+		$(".searching").val('');
 });
+
+$('.searchclose').on('click', function(){
+		$('.modal, div .searchresult').css('display', 'none');
+	});
+
+
 
 ////this takes an string and return search html
 function findAndDisplay(str) {
@@ -327,6 +333,18 @@ function responsiveNav(){
 	});
 }
 
+//this is a click listner that closes a modal if clicked away from the content or exscape is clicked
+$(".modal").on("click",function(e){
+	console.log("you clicked on the modal");
+	if(e.target === this){
+		$(this).css("display", "none");
+	}
+
+	if (e.which === 27) { 
+		$(this).css("display", "none"); 
+	} 
+});
+
 //this function runs the program
 function runApp() {
 	getBasicInfo(addDataToGeneralInfo);
@@ -336,6 +354,7 @@ function runApp() {
 	getNewsInfo(cryptoNewsUrl, renderNews);
 	responsiveNav();
 	showFullData();
+
 }
 
 

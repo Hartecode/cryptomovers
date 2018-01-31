@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Crypto W/L</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -20,25 +21,25 @@
 				<i id="navclose" class="fa fa-times fa-3x" aria-hidden="true"></i>
 				<form class="finder" role="search">
 					<fieldset>
-						<label for="search"></label>
-						<input id="search" type="text" name="search" placeholder="Search by name/symbole">
+						<label for="find"></label>
+						<input class="inputonesearch" id="find" type="text" name="search" placeholder="name or symbol">
 						<button type="submit" name="search">Search</button>
 					</fieldset>
 				</form>
 				<ul>
 					<li><a class="about" href="#">About</a></li>
-					<li><a class="LLBoard" href="#">Leader/Loser Board</a></li>
+					<li><a class="LLBoard" href="#">Coin List</a></li>
 				</ul>
 			</div>
 
 			<ul class="navfullscreenlinks">
 				<li><a class="about" href="#">About</a></li>
-				<li><a class="LLBoard" href="#">Leader/Loser Board</a></li>
+				<li><a class="LLBoard" href="#">Full Coin List</a></li>
 			</ul>
 			<form id="fullscreenfinder" class="finder">
 				<fieldset>
 					<label for="search"></label>
-					<input id="search" type="text" name="search" placeholder="Search by name/symbole">
+					<input class="secinputsearch" id="search" type="text" name="search" placeholder="name or symbol">
 					<button type="submit" name="search">Search</button>
 				</fieldset>
 			</form>
@@ -49,7 +50,7 @@
 	<main class="container" role="main">
 		<div id='snapshotData'>
 			<section class="topthreebox" role="region">
-				<div>
+				<div class="innerbox">
 					<h2 class="topheader">Top 3 Winners</h2>
 					<div class="topWin3results">
 						<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
@@ -58,7 +59,7 @@
 			</section>
 
 			<section class="topthreebox" role="region">
-				<div>
+				<div class="innerbox">
 					<h2 class="topheader">Top 3 Losers</h2>
 					<div class="topLoss3results">
 						<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
@@ -67,52 +68,55 @@
 			</section>
 
 			<section class="dayLeader" role="region">
-		    	<div class="leaderData">
-			        <i class="fa fa-btc fa-5x" aria-hidden="true"></i>	
-		    	</div>	
-		    	<div id="dayLeaderChart">
-		    		<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
-		    	</div>
+				<div class="innerbox">
+					<div class="leaderData">
+				       	
+			    	</div>	
+			    	<div id="dayLeaderChart">
+			    		
+			    	</div>
+				</div>
 		    </section>
 		</div>
+
 		<div class="news">	
 			<i class="fa fa-btc fa-5x" aria-hidden="true"></i>		
 		</div>
 		
 		
 		<section class="aboutContent modal" role="region">
-			<div class="container">
-				<h2 class="topheader"> About</h2>
+			<div class="container modal-content">
 				<div class="aboutclose"><i class="fa fa-times" aria-hidden="true"></i></div>
+				<h2 class="topheader"> About</h2>
 				<p>Bacon ipsum dolor amet chuck bresaola pastrami flank, ut ribeye buffalo swine. Dolore labore capicola tenderloin. Deserunt corned beef pariatur salami excepteur ham sunt, doner ball tip sed landjaeger pork belly est bacon. Id duis porchetta, jerky ball tip in kielbasa aliqua ipsum pariatur short loin nulla sausage ribeye anim.</p>
 
 				<p>Ex enim drumstick, frankfurter aliqua ham bacon flank ground round tail short ribs. Anim nisi in burgdoggen lorem nostrud cillum. Doner consequat culpa fugiat prosciutto. Proident pig consequat, fugiat porchetta officia exercitation ut picanha. Nisi et eu pork chop filet mignon ullamco chicken pariatur frankfurter dolore deserunt.</p>
 			</div>
 		</section>
+
 		<section class="leader-looser modal" role="region">
-			<div class="container llbox">
-				<h2 class="topheader">Leader/Loser Board</h2>
+			<div class="container llbox modal-content">
 				<div class="boardclose"><i class="fa fa-times" aria-hidden="true"></i></div>
+				<h2 class="topheader">Coin List</h2>
 				<ol class="llboardresults">		
 				</ol>
 			</div>
 			
 		</section>
 
-		
-
 		<div class="searchresult modal">
-			<div class="container">
-				<div class="searchGenInfo flex">
-			    </div>
-		    <div class="searchclose"><i class="fa fa-times" aria-hidden="true"></i></div>
-			<div id="searchChart"></div>
+			<div class="container modal-content">
+				<div class="searchclose"><i class="fa fa-times" aria-hidden="true"></i></div>
+				<div class="searchGenInfo"></div>
+				<div id="searchChart"></div>
 			</div>	
 		</div>
 
 
 	</main>
-	<footer role="contactinfo"> © 2018 Sean Harte</footer>
+
+	<footer role="contactinfo"> © 2018 Sean Harte  <i class="fa fa-github" aria-hidden="true"></i> <i class="fa fa-codepen" aria-hidden="true"></i> <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+</footer>
 
 
 	<script type="text/javascript" src="javascript/frameworks/jquery-3.2.1.min.js"></script>
