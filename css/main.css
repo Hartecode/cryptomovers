@@ -95,6 +95,7 @@ a:active  {
 }
 
 .topresult, .llboardresults li {
+	cursor: pointer;
 	height: 20px;
     box-sizing: border-box;
     font-size: 16px;
@@ -107,14 +108,26 @@ a:active  {
 	margin-bottom: 10px;
 }
 
+.topresult:nth-child(1) p{
+	font-size: 23px;
+}
+
 .topresult:nth-child(2) {
 	height: 23px;
 	font-size: 20px;
 	margin-bottom: 10px;
 }
 
+.topresult:nth-child(2) p{
+	font-size: 20px;
+}
+
 .topresult:nth-child(3) {
 	height: 20px;
+	font-size: 16px;
+}
+
+.topresult:nth-child(3) p{
 	font-size: 16px;
 }
 
