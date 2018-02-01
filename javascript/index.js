@@ -32,7 +32,7 @@ function addDataToGeneralInfo(data) {
   listOfCoins = Object.keys(basicCoinInfo);
   getCurrnetPriceData(cryptoComparePriceUrl,listOfCoins, updateData, requestedNumber);
   // the intervial will be set here
-  // setInterval( priceInterval, 30000);
+  setInterval( priceInterval, 30000);
 }
 
 function priceInterval() {
