@@ -32,7 +32,7 @@ function addDataToGeneralInfo(data) {
   listOfCoins = Object.keys(basicCoinInfo);
   getCurrnetPriceData(cryptoComparePriceUrl,listOfCoins, updateData, requestedNumber);
   // the intervial will be set here
-  setInterval( priceInterval, 30000);
+  // setInterval( priceInterval, 30000);
 }
 
 function priceInterval() {
@@ -196,7 +196,15 @@ function finChart(url, idHTML , key){
 	            tooltip: {
 	                valueDecimals: 2
 	            }
-	        }]
+	        }],
+
+	        responsive: {
+		        rules: [{
+		            condition: {
+		                maxHeight: 400
+		            },
+		        }]
+		    }
 	    });
 	});
 
@@ -339,9 +347,12 @@ $(".modal").on("click",function(e){
 	if(e.target === this){
 		$(this).css("display", "none");
 	}
+});
 
-	if (e.which === 27) { 
-		$(this).css("display", "none"); 
+///if the user press down on the escape key then display: none will be applied onto a modal
+$(document).keydown(function(e){
+	if (e.keyCode === 27) { 
+		$(".modal").css("display", "none"); 
 	} 
 });
 
