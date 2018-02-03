@@ -224,8 +224,7 @@ function cryptoSearch() {
 		e.preventDefault();
 		
 		//if input 1 has a val of 0 the use input from 
-		let userInput = ($(window).width() >= 880) ? $(".secinputsearch").val().toUpperCase(): $(".inputonesearch").val().toUpperCase();
-
+		let userInput = $(".secinputsearch").val().toUpperCase();
 		console.log(userInput)
 		findAndDisplay(userInput);
 		$(".searching").val('');
@@ -333,10 +332,10 @@ function getNewsInfo(url, callback) {
 //this function handles the click listeners for the side nav bar
 function responsiveNav(){
 	$('#navopen').on("click", function(){
-		$('#mySidenav').css('width', '300px');
+		$('header').toggleClass('fullheight');
 	});
 
-	$('#navclose, #mySidenav .about, #mySidenav .LLBoard, #mySidenav button').on("click", function(){
+	$('#mySidenav .about, #mySidenav .LLBoard, #mySidenav button').on("click", function(){
 		$('#mySidenav').css('width', '0');
 	});
 }
