@@ -258,8 +258,6 @@ function findAndDisplay(str) {
 function showFullData() {
 	console.log("render: showFullData");
 	$('div').on('click', '.fullcoindataresults', function() {
-		console.log("render: showFullData");
-		console.log($(this).find("img"));	
 		let coin = $(this).find("img").attr("alt");
 		$('.modal').css('display', 'none');
 		let searchResult = highToLowPct.find(function (e) {
@@ -338,6 +336,8 @@ function responsiveNav(){
 	$('#mySidenav .about, #mySidenav .LLBoard, #mySidenav button').on("click", function(){
 		$('#mySidenav').css('width', '0');
 	});
+
+	
 }
 
 //this is a click listner that closes a modal if clicked away from the content or exscape is clicked
@@ -354,6 +354,16 @@ $(document).keydown(function(e){
 		$(".modal").css("display", "none"); 
 	} 
 });
+
+//this will listen to the window size and remove a class from header once fired
+$(window).resize( function(){
+	console.log("running");
+	if($(window).width() >= 880) {
+		console.log("ok");
+		$('header').removeClass('fullheight');
+	}
+});
+
 
 //this function runs the program
 function runApp() {
