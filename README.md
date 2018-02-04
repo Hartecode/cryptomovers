@@ -22,7 +22,7 @@ This app ranks 50 cryptocurrencies by percentage change. The user can click on a
 
 <h2>Demo</h2>
 <hr>
-<a href="https://hartecode.github.io/cryptowinners-losers/">Live Demo</a>
+<a href="https://hartecode.github.io/cryptomovers/">Live Demo</a>
 
 <h2>Technology</h2>
 <hr>
