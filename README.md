@@ -1,7 +1,7 @@
 <h1>Crypto-Movers</h1>
 
 
-This app ranks 50 cryptocurrencies by percentage change. The user can click on a currncy or type the name of a cyrptocurrency in the searhc bar to obtain the symbol, current price, percentage chaneg, market cap, volume, and open pice in the pas 24 hours.  The user can also click on the articles on the right on desktop screens or on the button of mobile screens for the latest in crypto news.
+This app ranks 50 cryptocurrencies by percentage change. The user can click on a currency or type the name of a cyrptocurrency in the search bar to obtain the symbol, current price, percentage change, market cap, volume, and open price in the past 24 hours.  The user can also click on the articles on the right on desktop screens or on the button on mobile screens for the latest in crypto news.
 
 
 
