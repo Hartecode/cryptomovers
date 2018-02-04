@@ -8,16 +8,16 @@ This app ranks 50 cryptocurrencies by percentage change. The user can click on a
 <h2>Screenshots</h2>
 <hr>
 <h3>Main screen</h3>
-<img src="images/dashsnapshot.png" alt="main app" style="max-width: 100%">
+<img src="images/dashsnapshot.png" alt="main snapshot app" style="max-width: 100%">
 
 <h3>About</h3>
-<img src="images/aboutsnapshot.png" alt="about app" style="max-width: 100%">
+<img src="images/aboutsnapshot.png" alt="about snapshot app" style="max-width: 100%">
 
 <h3>Rankings</h3>
-<img src="images/rankingssnapshot.png" alt="ranking app" style="max-width: 100%">
+<img src="images/rankingssnapshot.png" alt="ranking snapshot app" style="max-width: 100%">
 
 <h3>Currency Details</h3>
-<img src="images/geninfonapshot.png" alt="detains app" style="max-width: 100%">
+<img src="images/geninfosnapshot.png" alt="details snapshot app" style="max-width: 100%">
 
 
 <h2>Demo</h2>
