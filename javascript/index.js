@@ -59,7 +59,6 @@ function updateData(data) {
 
 //this funcition take the data from the JSON and puts it in an area which sorts it from heightest percent change to lowest
 function fromObjectToArray(data, numberOfCoins, listOfCoins) {
-	console.log('fromObjectToArray: rendered');
 	highToLowPct = [];
 	for(let i = 0; i < numberOfCoins; i ++){
 		highToLowPct.push(data[listOfCoins[i]]);
@@ -74,7 +73,6 @@ function fromObjectToArray(data, numberOfCoins, listOfCoins) {
 
 //this function takes two arrguments price data and coin info.  The data from those arrgument will be entered into the html doc
 function topThreeHtml(priceData, coinInfo) {
-	console.log("topThreeHTML: rendered")
 	return `<div class='topresult fullcoindataresults'>
 				<div class='top3sym'><img src='https://www.cryptocompare.com${coinInfo.ImageUrl}' alt="${priceData.USD.KEY}" name='${coinInfo.CoinName}'></div>
 				<div class='topContent'><p>${coinInfo.FullName}</p></div>
@@ -94,11 +92,8 @@ function positiveNegativeColor(int) {
 //this function loads the top 3 coins with % change
 function loadTopWinThreeCoin (arr, basicInfo) {
 	let htmlContent = arr.slice(0, 3).map(function(priceData) {
-		console.log(priceData);
 		return topThreeHtml(priceData, basicInfo[priceData.USD.KEY]);
 	});
-	console.log(htmlContent);
-
 	$('.topWin3results').html(htmlContent);
 }
 
@@ -109,7 +104,6 @@ function loadTopLosThreeCoin (arr, basicInfo) {
 	arr.slice(-3).forEach(function(priceData) {
 		htmlContent.unshift(topThreeHtml(priceData, basicInfo[priceData.USD.KEY]));
 	});
-	console.log(htmlContent);
 	$('.topLoss3results').html(htmlContent);
 }
 
@@ -176,7 +170,6 @@ function finChart(url, idHTML , key){
 
 	$.getJSON(url, query,function(data){
 		
-		// console.log(usableChartData(data));
 		Highcharts.stockChart(idHTML, {
 
 
@@ -223,7 +216,6 @@ function cryptoSearch() {
 		
 		//if input 1 has a val of 0 the use input from 
 		let userInput = $(".secinputsearch").val().toUpperCase();
-		console.log(userInput.length)
 		if(userInput.length != 0){
 			findAndDisplay(userInput);
 			$(".secinputsearch").val('');
@@ -244,7 +236,6 @@ function findAndDisplay(str) {
 		});
 
 		if(searchResult != undefined) {
-			console.log("render search result:"+ JSON.stringify(searchResult));
 			$(".searchGenInfo").html(searchHtml(searchResult, basicCoinInfo[searchResult.USD.KEY]));
 			finChart(histPriceDayUrl, "searchChart" , searchResult.USD.KEY);
 			$(".searchresult").fadeIn();
@@ -254,14 +245,12 @@ function findAndDisplay(str) {
 			$(".searchGenInfo").html(`<h1>Sorry, we have no data on ${str}</h1>`);
 			$('#searchChart').html('<i class="fa fa-btc fa-5x" aria-hidden="true"></i>');
 			$(".searchresult").fadeIn();
-			console.log("search result not found");
 		}
 	}
 }
 
 //this function runs the click listiner for the coins. when a coin is clicked it displays the full info
 function showFullData() {
-	console.log("render: showFullData");
 	$('div').on('click', '.fullcoindataresults', function() {
 		let coin = $(this).find("img").attr("alt");
 		$('.modal').css('display', 'none');
@@ -270,7 +259,7 @@ function showFullData() {
 		});
 
 		if(searchResult != undefined) {
-			console.log("render search result:"+ JSON.stringify(searchResult));
+
 			$(".searchGenInfo").html(searchHtml(searchResult, basicCoinInfo[searchResult.USD.KEY]));
 			finChart(histPriceDayUrl, "searchChart" , searchResult.USD.KEY);
 			$(".searchresult").fadeIn();
@@ -347,7 +336,6 @@ function responsiveNav(){
 
 //this is a click listner that closes a modal if clicked away from the content or exscape is clicked
 $(".modal").on("click",function(e){
-	console.log("you clicked on the modal");
 	if(e.target === this){
 		$(this).css("display", "none");
 	}
