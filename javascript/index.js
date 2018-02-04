@@ -32,7 +32,7 @@ function addDataToGeneralInfo(data) {
   listOfCoins = Object.keys(basicCoinInfo);
   getCurrnetPriceData(cryptoComparePriceUrl,listOfCoins, updateData, requestedNumber);
   // the intervial will be set here
-  setInterval( priceInterval, 30000);
+  // setInterval( priceInterval, 30000);
 }
 
 function priceInterval() {
@@ -125,8 +125,6 @@ function boardHtml(priceData, coinInfo) {
 //this function loads the top 3 coins with % change
 function loadLeaderLoserBoard(arr, basicInfo) {
 	let htmlContent = arr.map(function(priceData) {
-		// console.log(priceData.USD.KEY);
-		// console.log(arr.indexOf(priceData));
 		return boardHtml(priceData, basicInfo[priceData.USD.KEY]);
 	});
 
@@ -357,9 +355,7 @@ $(document).keydown(function(e){
 
 //this will listen to the window size and remove a class from header once fired
 $(window).resize( function(){
-	console.log("running");
 	if($(window).width() >= 880) {
-		console.log("ok");
 		$('header').removeClass('fullheight');
 	}
 });

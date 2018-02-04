@@ -83,9 +83,6 @@ a:active  {
 	padding-top: 5px;
 }
 
-#snapshotData {
-	/*background-color: white;*/
-}
 
 .topthreebox {
     box-sizing: border-box;
@@ -116,37 +113,37 @@ a:active  {
 
 .topresult:nth-child(1) {
 	height: 26px;
-	font-size: 23px;
+	font-size: 21px;
 	margin-bottom: 10px;
 }
 
 .topresult:nth-child(1) p{
-	font-size: 23px;
+	font-size: 21px;
 }
 
 .topresult:nth-child(2) {
 	height: 23px;
-	font-size: 20px;
+	font-size: 17px;
 	margin-bottom: 10px;
 }
 
 .topresult:nth-child(2) p{
-	font-size: 20px;
+	font-size: 17px;
 }
 
 .topresult:nth-child(3) {
-	height: 20px;
-	font-size: 16px;
+	height: 17px;
+	font-size: 14px;
 }
 
 .topresult:nth-child(3) p{
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .top3sym {
 	float: left;
 	height: 100%;
-	margin-right: 10px;
+	width: 10%;
 }
 
 .top3sym img {
@@ -155,7 +152,7 @@ a:active  {
 
 .topContent {
 	float: left;
-	margin-right: 10px;
+	width: 60%;
 }
 
 .topContent p {
@@ -177,7 +174,8 @@ a:active  {
 .positiveIncrease {
 	display: inline-block;
 	color: green;
-	float: right;
+	float: left;
+	width: 30%;
 }
 
 .positiveIncrease:before {
@@ -189,7 +187,8 @@ a:active  {
 .negativeIncrease {
 	display: inline-block;
 	color: red;
-	float: right;
+	float: left;
+	width: 30%;
 }
 
 .negativeIncrease:before {
@@ -213,6 +212,13 @@ a:active  {
 .modal-content {
 	background-color: white;
 	padding: 10px;
+	margin-top: 30px;
+	width: 100%;
+	
+}
+
+.searchresult .modal-content {
+	float: left;
 }
 
 .leader-looser{
@@ -227,7 +233,7 @@ input {
     float: left;
     box-sizing: border-box;
     padding-left: 10px;
-    /*outline: none;*/
+    outline: none;
 }
 
 .btn {
@@ -267,6 +273,11 @@ div.boardclose {
   
 }
 
+.searchGenInfo {
+	float: left;
+	width: 100%;
+}
+
 .dayLeader {  
 	box-sizing: border-box;
 	min-height: 420px;    
@@ -278,7 +289,7 @@ div.boardclose {
 	text-align: center;
 }
 
-#dayLeaderChart {
+#dayLeaderChart, #searchChart {
 	float: left;
 	height: 400px;
 	width: 100%;
@@ -375,6 +386,7 @@ div.boardclose {
     padding: 5px;
 }
 
+
 /*This is for all the news links*/
 .news{
 	box-sizing: border-box;
@@ -453,14 +465,23 @@ article a:hover   {
 
 /*this css controls the footer and its elements*/
 footer {
+	background-color: #242f58;
+	padding: 5px;
+	color: white;
+	text-align: center;
 	float: left;
    	width:100%;
-   	font-size: 20px
-   	background-color: black;
-   	color: white;
-   	text-align: center;
+   	font-size: 16px;
 }
 
+footer a {
+	color: white;
+}
+
+footer a:hover {
+	color: yellow;
+	text-decoration: none;
+}
 
 .fa-btc {
   -webkit-animation:spin 4s linear infinite;
@@ -483,7 +504,7 @@ footer {
 
 	.searchRanking {
 		width: 50%;
-		float: inherit;
+		float: initial;
 	}
 
 	.imageIcon {
@@ -512,20 +533,16 @@ footer {
 }
 
 @media screen and (max-width: 880px) {
-	/*header {
-		height: 194px
-	}*/
-
 	.about, .LLBoard {
 		width: 100%;
 	}
 
 	input {
-		width: 80%;
+		width: 70%;
 	}
 
 	.search{
-		width: 20%;
+		width: 30%;
 	}
 
 	.navfullscreenlinks, #fullscreenfinder {
@@ -562,12 +579,12 @@ footer {
 	}
 
 	.llboardresults .topContent p{
-		font-size: 37px;
+		font-size: 30px;
 	}
 
 	.llboardresults li {
-		height: 40px;
-		font-size: 37px;
+		height: 36px;
+		font-size: 32px;
 	}
 
 }
