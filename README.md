@@ -1,28 +1,30 @@
-Crypto-Movers
+<h1>Crypto-Movers</h1>
 
 
 This app ranks 50 cryptocurrencies by percentage change. The user can click on a currncy or type the name of a cyrptocurrency in the searhc bar to obtain the symbol, current price, percentage chaneg, market cap, volume, and open pice in the pas 24 hours.  The user can also click on the articles on the right on desktop screens or on the button of mobile screens for the latest in crypto news.
 
-Screenshots
+
+
+<h2>Screenshots</h2>
 <hr>
-Main screen
+<h3>Main screen</h3>
 <img src="images/dashsnapshot.png" alt="main app" style="max-width: 100%">
 
-About
+<h3>About</h3>
 <img src="images/aboutsnapshot.png" alt="about app" style="max-width: 100%">
 
-Rankings
+<h3>Rankings</h3>
 <img src="images/rankingssnapshot.png" alt="ranking app" style="max-width: 100%">
 
-Full Currency info
+<h3>Currency Details</h3>
 <img src="images/geninfonapshot.png" alt="detains app" style="max-width: 100%">
 
 
-Demo
+<h2>Demo</h2>
 <hr>
 <a href="https://hartecode.github.io/cryptowinners-losers/">Live Demo</a>
 
-Technology
+<h2>Technology</h2>
 <hr>
 <ul>
 	<li>HTML</li>
@@ -33,7 +35,7 @@ Technology
 	<li>Data visualization</li>
 </ul>
 
-Credits
+<h2>Credits</h2>
 <hr>
 <ul>
 	<li><a href="https://www.highcharts.com/">Highcharts</a></li>
