@@ -281,7 +281,7 @@ function showFullData() {
 
 // function holds the html of detailed info on the coin
 function searchHtml(priceData, basicInfo) {
-	return `<div class="imageIcon"><img class="searchIcon" src="https://www.cryptocompare.com${basicInfo.ImageUrl}" name="${basicInfo.CoinName}"></div>
+	return `<div class="imageIcon"><img class="searchIcon" src="https://www.cryptocompare.com${basicInfo.ImageUrl}" alt="${basicInfo.CoinName}"></div>
 				<div class="searchCoinInfo">
 				   <div class="coinName">${basicInfo.FullName}</div>
 		           <div class="coinCost">${priceData.USD.PRICE}</div>
@@ -309,7 +309,7 @@ function searchHtml(priceData, basicInfo) {
 function newsHtml(obj){
 	return `<article role="article">
 				<a href="${obj.url}" target="_blank">
-					<div class='newsImgBox'><img src="${obj.imageurl}"></div>
+					<div class='newsImgBox'><img src="${obj.imageurl}" alt="${obj.source_info.nam}"></div>
 					<div class="newsTitleBox">
 						<h4>${obj.title}</h4>
 						<p>${obj.source_info.name}</p>
