@@ -18,7 +18,7 @@
 		
 		<nav role="navigation">
 
-			<form id="fullscreenfinder" class="finder" role="search">
+			<form id="fullscreenfinder" class="finder" action="#" name="search" role="search">
 				<fieldset>
 					<label for="search"></label>
 					<input class="secinputsearch" id="search" type="text" name="search" placeholder="name or symbol">
@@ -37,7 +37,7 @@
 			<section class="topthreebox" role="region">
 				<div class="innerbox">
 					<h2 class="topheader">Top 3 Winners</h2>
-					<div class="topWin3results">
+					<div class="topWin3results" aria-live="assertive">
 						<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
 					</div>
 				</div>	
@@ -46,7 +46,7 @@
 			<section class="topthreebox" role="region">
 				<div class="innerbox">
 					<h2 class="topheader">Top 3 Losers</h2>
-					<div class="topLoss3results">
+					<div class="topLoss3results" aria-live="assertive">
 						<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
 					</div>
 				</div>
@@ -54,17 +54,17 @@
 
 			<section class="dayLeader" role="region">
 				<div class="innerbox">
-					<div class="leaderData">
-				       	
+					<div class="leaderData" aria-live="assertive">
+				       	<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
 			    	</div>	
-			    	<div id="dayLeaderChart">
-			    		
+			    	<div id="dayLeaderChart" aria-live="assertive">
+			    		<i class="fa fa-btc fa-5x" aria-hidden="true"></i>
 			    	</div>
 				</div>
 		    </section>
 		</div>
 
-		<div class="news">	
+		<div class="news" aria-live="assertive">	
 			<i class="fa fa-btc fa-5x" aria-hidden="true"></i>		
 		</div>
 		
@@ -90,7 +90,7 @@
 			<div class="container llbox modal-content">
 				<div class="boardclose"><i class="fa fa-times" aria-hidden="true"></i></div>
 				<h2 class="topheader">Coin List</h2>
-				<ol class="llboardresults">		
+				<ol class="llboardresults" aria-live="assertive">		
 				</ol>
 			</div>
 			
@@ -99,8 +99,8 @@
 		<div class="searchresult modal">
 			<div class="container modal-content">
 				<div class="searchclose"><i class="fa fa-times" aria-hidden="true"></i></div>
-				<div class="searchGenInfo"></div>
-				<div id="searchChart"></div>
+				<div class="searchGenInfo" aria-live="assertive"></div>
+				<div id="searchChart" aria-live="assertive"></div>
 			</div>	
 		</div>
 

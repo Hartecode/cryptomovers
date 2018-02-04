@@ -223,9 +223,11 @@ function cryptoSearch() {
 		
 		//if input 1 has a val of 0 the use input from 
 		let userInput = $(".secinputsearch").val().toUpperCase();
-		console.log(userInput)
-		findAndDisplay(userInput);
-		$(".searching").val('');
+		console.log(userInput.length)
+		if(userInput.length != 0){
+			findAndDisplay(userInput);
+			$(".secinputsearch").val('');
+		}
 });
 
 $('.searchclose').on('click', function(){
@@ -247,6 +249,11 @@ function findAndDisplay(str) {
 			finChart(histPriceDayUrl, "searchChart" , searchResult.USD.KEY);
 			$(".searchresult").fadeIn();
 		} else{
+			$(".searchGenInfo").empty();
+			$("#searchChart").empty();
+			$(".searchGenInfo").html(`<h1>Sorry, we have no data on ${str}</h1>`);
+			$('#searchChart').html('<i class="fa fa-btc fa-5x" aria-hidden="true"></i>');
+			$(".searchresult").fadeIn();
 			console.log("search result not found");
 		}
 	}

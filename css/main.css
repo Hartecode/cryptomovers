@@ -103,6 +103,10 @@ a:active  {
 	text-align: center;
 }
 
+.fullcoindataresults:hover {
+	background-color: yellow;
+}
+
 .topresult, .llboardresults li {
 	cursor: pointer;
 	height: 20px;
@@ -273,9 +277,14 @@ div.boardclose {
   
 }
 
+.searchresult {
+	text-align: center;
+}
+
 .searchGenInfo {
 	float: left;
 	width: 100%;
+	font-size: 20px;
 }
 
 .dayLeader {  
@@ -294,6 +303,10 @@ div.boardclose {
 	height: 400px;
 	width: 100%;
 	margin: auto;
+}
+
+#searchChart {
+	font-size: 40px;
 }
 
 .imageIcon {
