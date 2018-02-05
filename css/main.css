@@ -223,6 +223,7 @@ a:active  {
 
 .searchresult .modal-content {
 	float: left;
+	max-width: 100%;
 }
 
 .leader-looser{
@@ -366,7 +367,7 @@ div.boardclose {
 }
 
 .priceData h4, .priceData p {
-  margin: 0;
+  	margin: 0;
 }
 
 .searchRanking {
@@ -538,10 +539,6 @@ footer a:hover {
 		font-size: 22px;
 		margin: 0;
 	}
-
-	.searchChart {
-		height: 400px;
-	}
 	
 }
 
@@ -561,6 +558,8 @@ footer a:hover {
 	.navfullscreenlinks, #fullscreenfinder {
 		display: block;
 	}
+
+	
 }
 
 @media	screen and (min-width: 720px) {
@@ -599,7 +598,9 @@ footer a:hover {
 		height: 36px;
 		font-size: 32px;
 	}
-
+	#searchChart {
+		height: 600px;
+	}
 }
 
 @media screen and (min-width: 880px) {
