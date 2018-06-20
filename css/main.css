@@ -9,8 +9,8 @@ header {
 	height: 50px;
 	color: white;
 	width: 100%;
-	padding-right: 10px;
-	padding-left: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
 	box-sizing: border-box;
 	overflow: hidden;
 	-webkit-transition: all .5s;
@@ -86,6 +86,7 @@ a:active  {
 #snapshotData {
 	display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .topthreebox {
@@ -150,7 +151,6 @@ a:active  {
 }
 
 .top3sym {
-	/*float: left;*/
 	height: 100%;
 	width: 10%;
 }
@@ -160,16 +160,11 @@ a:active  {
 }
 
 .topContent {
-	/*float: left;*/
 	width: 60%;
 }
 
 .topContent p {
 	margin: 0;
-}
-
-.pecentageArrow {
-	/*float: left;*/
 }
 
 .fa-sort-asc {
@@ -183,7 +178,6 @@ a:active  {
 .positiveIncrease {
 	display: inline-block;
 	color: green;
-	/*float: left;*/
 	width: 30%;
 }
 
@@ -196,7 +190,6 @@ a:active  {
 .negativeIncrease {
 	display: inline-block;
 	color: red;
-	/*float: left;*/
 	width: 30%;
 }
 
@@ -205,6 +198,8 @@ a:active  {
 	content: "\f0d7";
 	color: red;
 }
+
+/*.  modals code */
 
 .modal{
 	display: none;
@@ -221,19 +216,16 @@ a:active  {
 .modal-content {
 	background-color: white;
 	padding: 10px;
+	max-width: 900px;
+	margin: auto;
 	margin-top: 30px;
-	width: 100%;
 	
 }
 
-.searchresult .modal-content {
-	float: left;
-	max-width: 100%;
-}
 
-.leader-looser{
+.llbox{
 	overflow-y: scroll;
-    height: 97vh;
+    height: 93vh;
    
 }
 
@@ -248,7 +240,6 @@ input {
 
 .btn {
 	height: 50px;
-	/*float: left;*/
     border: none;
     font-size: 20px;
     color: white;
@@ -265,8 +256,8 @@ input {
 
 .boardclose, .aboutclose, .searchclose {
 	font-size: 50px;
-    position: absolute;
-    top: 12;
+    position: relative;
+    text-align: left;
 }
 
 div.boardclose {
@@ -287,11 +278,6 @@ div.boardclose {
 	text-align: center;
 }
 
-.searchGenInfo {
-	width: 100%;
-	font-size: 20px;
-}
-
 .dayLeader {  
 	box-sizing: border-box;
 	min-height: 420px;    
@@ -305,7 +291,6 @@ div.boardclose {
 }
 
 #dayLeaderChart, #searchChart {
-	/*float: left;*/
 	height: 400px;
 	width: 100%;
 	margin: auto;
@@ -328,13 +313,19 @@ div.boardclose {
 	height: 100%;
 }
 
-.searchCoinInfo {
+.searchCoinInfo, .searchGenInfo {
 	display: flex;
     flex-wrap: wrap;
 	width: 64%;
-	height: 100px;
+	min-height: 100px;
 	font-size: 16px;
 }
+
+.searchGenInfo {
+	width: 100%;
+	font-size: 20px;
+}
+
 .coinName{
   font-size: 20px;
   width: 30%;
@@ -475,11 +466,12 @@ article a:hover   {
 
 /*this css controls the footer and its elements*/
 footer {
+	box-sizing: border-box;
+	min-height: 60px;
 	background-color: #242f58;
-	padding: 5px;
+	padding: 13px;
 	color: white;
 	text-align: center;
-   	width:100%;
    	font-size: 16px;
 }
 
