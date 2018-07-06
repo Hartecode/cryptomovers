@@ -467,7 +467,7 @@ article a:hover   {
 /*this css controls the footer and its elements*/
 footer {
 	box-sizing: border-box;
-	min-height: 60px;
+	min-height: 90px;
 	background-color: #242f58;
 	padding: 13px;
 	color: white;
